@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/models/fake_data.dart';
-import 'package:flutter_application_66666/my_colors.dart';
-import 'package:flutter_application_66666/my_string.dart';
+import 'package:flutter_application_66666/componet/my_colors.dart';
+import 'package:flutter_application_66666/componet/my_string.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

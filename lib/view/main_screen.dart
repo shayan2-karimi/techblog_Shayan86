@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
-import 'package:flutter_application_66666/my_colors.dart';
+import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/view/home_screen.dart';
 import 'package:flutter_application_66666/view/profile_screen.dart';
 import 'package:flutter_application_66666/view/register_intro.dart';
-
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-var selectedTapIndex = 0;
+import 'package:get/get.dart';
 
 final GlobalKey<ScaffoldState> _keyCustom = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
+class MainScreen extends StatelessWidget {
+  RxInt selectedTapIndex = 0.obs;
+
+  MainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var sizeCustom = MediaQuery.of(context).size;
@@ -107,29 +103,31 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Positioned.fill(
-              child: IndexedStack(
-                index: selectedTapIndex,
-                children: [
-                  HomeScreen(
-                    sizeCustom: sizeCustom,
-                    textThemeCustom: textThemeCustom,
-                    marginCustom: marginCustom,
-                  ),
-                  ProfileScreen(
-                      sizeCustom: sizeCustom,
-                      textThemeCustom: textThemeCustom,
-                      marginCustom: marginCustom),
-                  const RegisterIntro()
-                ],
+              child: Obx(
+                () {
+                  return IndexedStack(
+                    index: selectedTapIndex.value,
+                    children: [
+                      HomeScreen(
+                        sizeCustom: sizeCustom,
+                        textThemeCustom: textThemeCustom,
+                        marginCustom: marginCustom,
+                      ),
+                      ProfileScreen(
+                          sizeCustom: sizeCustom,
+                          textThemeCustom: textThemeCustom,
+                          marginCustom: marginCustom),
+                      const RegisterIntro()
+                    ],
+                  );
+                },
               ),
             ),
             BottomNavigation(
               sizeCustom: sizeCustom,
               marginCustom: marginCustom,
               changeScreenPage: (int value) {
-                setState(() {
-                  selectedTapIndex = value;
-                });
+                selectedTapIndex.value = value;
               },
             ),
           ],

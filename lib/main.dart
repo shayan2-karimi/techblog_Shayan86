@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_66666/my_colors.dart';
+import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/view/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -119,7 +119,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: MainScreen(),
     );
   }
 }

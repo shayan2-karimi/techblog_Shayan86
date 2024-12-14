@@ -41,6 +41,7 @@ dependencies:
   flutter_spinkit: ^5.2.1
   flutter_svg: ^2.0.14
   validators: ^3.0.0
+  get: ^4.6.6
 
 
 dev_dependencies:
