@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_66666/componet/my_componet.dart';
+import 'package:flutter_application_66666/componet/my_string.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/view/home_screen.dart';
 import 'package:flutter_application_66666/view/profile_screen.dart';
 import 'package:flutter_application_66666/view/register_intro.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 final GlobalKey<ScaffoldState> _keyCustom = GlobalKey();
 
@@ -61,7 +64,10 @@ class MainScreen extends StatelessWidget {
                       'اشتراک گذاری تک بلاگ',
                       style: textThemeCustom.headlineMedium,
                     ),
-                    onTap: () {},
+                    onTap: () async {
+                      await Share.share(
+                          'بااشتراک گذاشتن تک بلاگ دوستان خود را هم خوشحال کنید');
+                    },
                   ),
                   const Divider(
                     color: MyColors.dividerColor,
@@ -71,7 +77,9 @@ class MainScreen extends StatelessWidget {
                       'تک‌بلاگ در گیت هاب',
                       style: textThemeCustom.headlineMedium,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      myLucherUrl(MyString.mylaucherUrlgithub);
+                    },
                   ),
                 ],
               ),
