@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_66666/componet/my_componet.dart';
+import 'package:flutter_application_66666/componet/my_url_github.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
@@ -18,6 +18,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // DioServic().getMethod(MyapiConstant.myHomeItem);
     var sizeCustom = MediaQuery.of(context).size;
     var textThemeCustom = Theme.of(context).textTheme;
     double marginCustom = sizeCustom.width / 10;

@@ -1,7 +1,7 @@
 class MyString {
   static const String viewHotesBlog = "مشاهده داغ ترین نوشته ها";
-  static const String mylaucherUrlgithub = """
-https://github.com/shayan2-karimi/techblog_Shayan86""";
+  static const String mylaucherUrlgithub =
+      "https://github.com/shayan2-karimi/techblog_Shayan86";
   static const String viewHotesPodcasts = "مشاهده داغ ترین پادکست ها ";
   static const String relatedArticle = "نوشته های مرتبط";
   static const String submitArticle = "ارسال مقاله";
