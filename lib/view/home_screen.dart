@@ -26,35 +26,105 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 20,
-          ),
-          _HomePagePostScreen(
-              sizeCustom: sizeCustom, textThemeCustom: textThemeCustom),
-          const SizedBox(
-            height: 40,
-          ),
-          _HomePageTagList(
-              marginCustom: marginCustom, textThemeCustom: textThemeCustom),
-          const SizedBox(
-            height: 40,
-          ),
-          _HomePageSeeMoreBlog(
-              marginCustom: marginCustom, textThemeCustom: textThemeCustom),
-          const SizedBox(
-            height: 20,
-          ),
-          topVisited(),
-          _HomePageSeeMorePodcast(
-              marginCustom: marginCustom, textThemeCustom: textThemeCustom),
-          topPodcast(),
-          const SizedBox(
-            height: 45,
-          ),
-        ],
-      ),
+      child: Obx(() {
+        return homeScreenController.loading.value == false
+            ? Column(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  posterScreen(),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  _HomePageTagList(
+                      marginCustom: marginCustom,
+                      textThemeCustom: textThemeCustom),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  _HomePageSeeMoreBlog(
+                      marginCustom: marginCustom,
+                      textThemeCustom: textThemeCustom),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  topVisited(),
+                  _HomePageSeeMorePodcast(
+                      marginCustom: marginCustom,
+                      textThemeCustom: textThemeCustom),
+                  topPodcast(),
+                  const SizedBox(
+                    height: 45,
+                  ),
+                ],
+              )
+            : const loading();
+      }),
+    );
+  }
+
+  Widget posterScreen() {
+    return Obx(
+      () {
+        return Stack(
+          children: [
+            Container(
+              height: sizeCustom.height / 4.2,
+              width: sizeCustom.width / 1.25,
+              foregroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: const LinearGradient(
+                  colors: GradiantColors.posterCoverGradiant,
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: homeScreenController.poster.value.image!,
+                placeholder: (context, url) {
+                  return const loading();
+                },
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return const Icon(
+                    Icons.image_not_supported_outlined,
+                    size: 50,
+                    color: Colors.grey,
+                  );
+                },
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 8,
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(homeScreenController.poster.value.title!,
+                      style: textThemeCustom.displayLarge),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -78,10 +148,7 @@ class HomeScreen extends StatelessWidget {
                         width: sizeCustom.width / 2.1,
                         child: CachedNetworkImage(
                             placeholder: (context, url) {
-                              return const SpinKitFadingCube(
-                                color: MyColors.primeryColor,
-                                size: 30.0,
-                              );
+                              return const loading();
                             },
                             errorWidget: (context, url, error) {
                               return const Icon(
@@ -210,9 +277,9 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         placeholder: (context, url) {
-                          return const SpinKitFadingCube(
+                          return const SpinKitFadingCircle(
                             color: MyColors.primeryColor,
-                            size: 30.0,
+                            size: 50.0,
                           );
                         },
                         errorWidget: (context, url, error) {
@@ -240,6 +307,20 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class loading extends StatelessWidget {
+  const loading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitFadingCircle(
+      color: MyColors.primeryColor,
+      size: 50.0,
     );
   }
 }
@@ -351,7 +432,7 @@ class _HomePageTagList extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      tagListHashCode[index].title,
+                      Get.find<HomeScreenController>().tagsList[index].title!,
                       style: textThemeCustom.bodyLarge,
                     ),
                   ],
@@ -361,84 +442,6 @@ class _HomePageTagList extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _HomePagePostScreen extends StatelessWidget {
-  const _HomePagePostScreen({
-    required this.sizeCustom,
-    required this.textThemeCustom,
-  });
-
-  final Size sizeCustom;
-  final TextTheme textThemeCustom;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: sizeCustom.height / 4.2,
-          width: sizeCustom.width / 1.25,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            image: DecorationImage(
-              image: AssetImage(homePageposterMap["imageAssets"]),
-              fit: BoxFit.cover,
-            ),
-          ),
-          foregroundDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: const LinearGradient(
-              colors: GradiantColors.posterCoverGradiant,
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 8,
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                      homePageposterMap["writer"] +
-                          " - " +
-                          homePageposterMap["date"],
-                      style: textThemeCustom.titleMedium),
-                  Row(
-                    children: [
-                      Text(homePageposterMap["view"],
-                          style: textThemeCustom.titleMedium),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      const Icon(
-                        Icons.remove_red_eye_sharp,
-                        size: 18,
-                        color: MyColors.viewsIconsColor,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(homePageposterMap["title"],
-                  style: textThemeCustom.displayLarge),
-              const SizedBox(
-                height: 8,
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

@@ -55,6 +55,10 @@ class $FontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/1077804.png
+  AssetGenImage get a1077804 =>
+      const AssetGenImage('assets/images/1077804.png');
+
   /// File path: assets/images/Profile_Avator.png
   AssetGenImage get profileAvator =>
       const AssetGenImage('assets/images/Profile_Avator.png');
@@ -74,7 +78,8 @@ class $AssetsImagesGen {
   SvgGenImage get w3c1 => const SvgGenImage('assets/images/w3c (1).svg');
 
   /// List of all assets
-  List<dynamic> get values => [profileAvator, logoTech, programming, w3c1];
+  List<dynamic> get values =>
+      [a1077804, profileAvator, logoTech, programming, w3c1];
 }
 
 class $AssetsImagesIconsGen {

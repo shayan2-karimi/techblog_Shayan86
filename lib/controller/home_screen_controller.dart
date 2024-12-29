@@ -7,10 +7,12 @@ import 'package:flutter_application_66666/services/dio_servic.dart';
 import 'package:get/get.dart';
 
 class HomeScreenController extends GetxController {
-  late Rx<PosterModel> poster;
+  late Rx<PosterModel> poster = PosterModel().obs;
   RxList<TopVisited> topVisitedList = RxList();
   RxList<TopPodcasts> topPodcastList = RxList();
   RxList<TagsModel> tagsList = RxList();
+
+  RxBool loading = false.obs;
 
   @override
   onInit() {
@@ -19,6 +21,7 @@ class HomeScreenController extends GetxController {
   }
 
   getMethodHome() async {
+    loading.value = true;
     var myResponse = await DioServic().getMethod(MyapiConstant.myHomeItem);
 
     if (myResponse.statusCode == 200) {
@@ -28,6 +31,12 @@ class HomeScreenController extends GetxController {
       myResponse.data['top_podcasts'].forEach((elemebtPod) {
         topPodcastList.add(TopPodcasts.fromJson((elemebtPod)));
       });
+      myResponse.data['tags'].forEach((elementTag) {
+        tagsList.add(TagsModel.fromJson((elementTag)));
+      });
+      poster.value = PosterModel.fromJson(myResponse.data['poster']);
+
+      loading.value = false;
     }
   }
 }

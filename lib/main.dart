@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
-import 'package:flutter_application_66666/view/main_screen.dart';
+import 'package:flutter_application_66666/view/article_list.dart';
+import 'package:flutter_application_66666/view/single.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,16 +25,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textThemeCustom = Theme.of(context).textTheme;
-    return MaterialApp(
+    return GetMaterialApp(
+      locale: const Locale('fa'),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('fa', ''), //persion
-      ],
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
@@ -93,7 +88,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w700), // headline2
           displaySmall: TextStyle(
             fontFamily: 'Ubuntu',
-            fontSize: 15,
+            fontSize: 16,
             color: MyColors.seeMore,
             fontWeight: FontWeight.w700,
           ), // headline3
@@ -119,7 +114,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreen(),
+      home: ArticleListScreen(),
     );
   }
 }

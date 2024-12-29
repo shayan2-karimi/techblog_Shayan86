@@ -9,6 +9,7 @@ class TopVisited {
   String? author;
   String? view;
   String? status;
+  // String? isFavorite;
   String? createdAt;
 
   TopVisited({
@@ -20,6 +21,7 @@ class TopVisited {
     required this.author,
     required this.view,
     required this.status,
+    //  this.isFavorite,
     required this.createdAt,
   });
 

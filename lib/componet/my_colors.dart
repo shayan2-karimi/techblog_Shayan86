@@ -24,6 +24,10 @@ class MyColors {
 }
 
 class GradiantColors {
+  static const List<Color> singleScreen = [
+    Color.fromARGB(255, 46, 3, 71),
+    Color.fromARGB(0, 128, 128, 128),
+  ];
   static const List<Color> bottomNavBackground = [
     Color.fromARGB(255, 255, 255, 255),
     Color.fromARGB(200, 255, 255, 255),

@@ -88,8 +88,9 @@ class MainScreen extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
+          elevation: 0,
           automaticallyImplyLeading: false,
-          backgroundColor: MyColors.scafoldBG,
+          backgroundColor: Colors.transparent,
           title: Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
             child: Row(
