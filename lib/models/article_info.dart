@@ -1,3 +1,5 @@
+import 'package:flutter_application_66666/componet/myapi_constant.dart';
+
 class ArticleInfo {
   String? id;
   String? title;
@@ -12,31 +14,32 @@ class ArticleInfo {
   bool? isFavorite;
 
   ArticleInfo({
-    required this.id,
-    required this.title,
-    required this.content,
-    required this.image,
-    required this.catId,
-    required this.catName,
-    required this.author,
-    required this.view,
-    required this.status,
-    required this.createdAt,
-    required this.isFavorite,
+    this.id,
+    this.title,
+    this.content,
+    this.image,
+    this.catId,
+    this.catName,
+    this.author,
+    this.view,
+    this.status,
+    this.createdAt,
+    this.isFavorite,
   });
 
   ArticleInfo.fromJson(Map<String, dynamic> elementInfo) {
-    var info = elementInfo['info'];
-    id = info['id'];
-    title = info['title'];
-    content = info['content'];
-    image = info['image'];
-    catId = info['cat_id'];
-    catName = info['cat_name'];
-    author = info['author'];
-    view = info['view'];
-    status = info['status'];
-    createdAt = info['created_at'];
-    isFavorite = elementInfo['isFavorite'];
+    var info = elementInfo['info'] ?? {};
+    id = info['id'] ?? '';
+    title = info['title'] ?? '';
+    content = info['content'] ?? '';
+    image =
+        info['image'] != null ? MyapiConstant.hostDiUrl + info['image'] : '';
+    catId = info['cat_id'] ?? '';
+    catName = info['cat_name'] ?? '';
+    author = info['author'] ?? '';
+    view = info['view'] ?? '';
+    status = info['status'] ?? '';
+    createdAt = info['created_at'] ?? '';
+    isFavorite = elementInfo['isFavorite'] ?? false;
   }
 }

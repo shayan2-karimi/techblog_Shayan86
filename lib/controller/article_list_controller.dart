@@ -26,4 +26,18 @@ class ArticleListController extends GetxController {
     }
     loadingArticle.value = false;
   }
+
+  getArticleListTagsId(String id) async {
+    articleList.clear();
+    loadingArticle.value = true;
+    var response = await DioServic().getMethod(
+        '${MyapiConstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');
+
+    if (response.statusCode == 200) {
+      response.data.forEach((elementList) {
+        articleList.add(TopVisited.fromJson((elementList)));
+      });
+    }
+    loadingArticle.value = false;
+  }
 }

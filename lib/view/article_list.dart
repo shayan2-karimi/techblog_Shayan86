@@ -31,9 +31,9 @@ class ArticleListScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    singleArticleController.id.value = int.parse(
-                        articleListController.articleList[index].id.toString());
-                    Get.to(Single());
+                    singleArticleController.id.value =
+                        int.parse(articleListController.articleList[index].id!);
+                    Get.to(const Single());
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),
@@ -94,8 +94,7 @@ class ArticleListScreen extends StatelessWidget {
                                   Text(
                                     articleListController
                                         .articleList[index].author!,
-                                    style: textThemeCustom.headlineMedium!
-                                        .copyWith(fontSize: 13),
+                                    style: textThemeCustom.displayLarge,
                                   ),
                                   Text(
                                     '${articleListController.articleList[index].view!}بازدید',
@@ -106,8 +105,7 @@ class ArticleListScreen extends StatelessWidget {
                                   Text(
                                     articleListController
                                         .articleList[index].catName!,
-                                    style: textThemeCustom.displaySmall!
-                                        .copyWith(fontSize: 13),
+                                    style: textThemeCustom.displayLarge,
                                   ),
                                 ],
                               ),
