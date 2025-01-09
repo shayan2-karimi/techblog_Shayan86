@@ -4,7 +4,6 @@ import 'package:flutter_application_66666/componet/my_componet.dart';
 import 'package:flutter_application_66666/controller/article_list_controller.dart';
 import 'package:flutter_application_66666/controller/single_article_controller.dart';
 import 'package:flutter_application_66666/view/home_screen.dart';
-import 'package:flutter_application_66666/view/single.dart';
 import 'package:get/get.dart';
 
 class ArticleListScreen extends StatelessWidget {
@@ -31,9 +30,8 @@ class ArticleListScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    singleArticleController.id.value =
-                        int.parse(articleListController.articleList[index].id!);
-                    Get.to(const Single());
+                    singleArticleController.getArticle(
+                        articleListController.articleList[index].id);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
-import 'package:flutter_application_66666/view/article_list.dart';
+import 'package:flutter_application_66666/view/my_splashScreen.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  runApp(const MyApp());
-
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: MyColors.statusBarColorCustom,
@@ -15,6 +14,9 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+  await GetStorage.init();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -112,7 +114,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ArticleListScreen(),
+      home: const MySplashscreen(),
     );
   }
 }

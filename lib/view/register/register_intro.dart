@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_66666/controller/register_controller.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
-import 'package:flutter_application_66666/view/myCategory_screen.dart';
+import 'package:flutter_application_66666/view/home_screen.dart';
+import 'package:flutter_application_66666/view/main_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({super.key});
+  RegisterIntro({super.key});
+
+  RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +59,14 @@ class RegisterIntro extends StatelessWidget {
   Future<dynamic> _showEmailButtonSheet(
       BuildContext context, Size sizeCustom, TextTheme textThemeCustom) {
     return showModalBottomSheet(
-      isScrollControlled: true, // TODOبرای جلوگیری از خطای اور فلو
+      isScrollControlled: true, //  جلوگیری از خطای اور فلو
       context: context,
       builder: (context) {
         return Padding(
           padding: EdgeInsets.only(
               bottom: MediaQuery.of(context)
                   .viewInsets
-                  .bottom), // TODO:برای پایین نموندن صفحه هنگام باز شدن کیبورد
+                  .bottom), // برای پایین نموندن صفحه هنگام باز شدن کیبورد
           child: Container(
             height: sizeCustom.height / 2,
             decoration: const BoxDecoration(
@@ -82,6 +87,7 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(55, 30, 55, 40),
                     child: TextField(
+                      controller: registerController.emailTextEditingController,
                       style: textThemeCustom.headlineMedium,
                       onChanged: (value) {
                         print("${value}is Email : ${isEmail(value)}");
@@ -95,6 +101,7 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      registerController.registerCustom();
                       Navigator.pop(context);
                       _activeCodeButtonSheet(
                           context, sizeCustom, textThemeCustom);
@@ -116,14 +123,14 @@ class RegisterIntro extends StatelessWidget {
   Future<dynamic> _activeCodeButtonSheet(
       BuildContext context, Size sizeCustom, TextTheme textThemeCustom) {
     return showModalBottomSheet(
-      isScrollControlled: true, // TODOبرای جلوگیری از خطای اور فلو
+      isScrollControlled: true, //  جلوگیری از خطای اور فلو
       context: context,
       builder: (context) {
         return Padding(
           padding: EdgeInsets.only(
               bottom: MediaQuery.of(context)
                   .viewInsets
-                  .bottom), // TODO:برای پایین نموندن صفحه هنگام باز شدن کیبورد
+                  .bottom), // برای پایین نموندن صفحه هنگام باز شدن کیبورد
           child: Container(
             height: sizeCustom.height / 2,
             decoration: const BoxDecoration(
@@ -144,6 +151,8 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(55, 30, 55, 40),
                     child: TextField(
+                      controller:
+                          registerController.activeCodeEditingController,
                       style: textThemeCustom.headlineMedium,
                       onChanged: (value) {
                         print("${value}is Email : ${isEmail(value)}");
@@ -157,10 +166,11 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) => const MycategoryScreen()),
-                      );
+                      if (registerController.verifyCustom()) {
+                        Get.to(MainScreen());
+                      } else {
+                        print('can not root page');
+                      }
                     },
                     child: const Text(
                       'ادامه',

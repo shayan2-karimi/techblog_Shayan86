@@ -3,6 +3,7 @@ import 'package:flutter_application_66666/models/article_info.dart';
 import 'package:flutter_application_66666/models/tags_model.dart';
 import 'package:flutter_application_66666/models/visited_model.dart';
 import 'package:flutter_application_66666/services/dio_servic.dart';
+import 'package:flutter_application_66666/view/single.dart';
 import 'package:get/get.dart';
 
 class SingleArticleController extends GetxController {
@@ -25,7 +26,8 @@ class SingleArticleController extends GetxController {
     isFavorite: false,
   ).obs;
 
-  getArticle() async {
+  getArticle(var id) async {
+    articleInfoModel = ArticleInfo().obs;
     loadingArticle.value = true;
     var userId = '';
 
@@ -45,5 +47,7 @@ class SingleArticleController extends GetxController {
     response.data["related"].forEach((element) {
       relatedList.add(TopVisited.fromJson(element));
     });
+
+    Get.to(Single());
   }
 }
