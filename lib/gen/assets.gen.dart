@@ -70,6 +70,14 @@ class $AssetsImagesGen {
   AssetGenImage get logoTech =>
       const AssetGenImage('assets/images/logo_Tech.png');
 
+  /// File path: assets/images/microphoneSheet.png
+  AssetGenImage get microphoneSheet =>
+      const AssetGenImage('assets/images/microphoneSheet.png');
+
+  /// File path: assets/images/pencelSheet.png
+  AssetGenImage get pencelSheet =>
+      const AssetGenImage('assets/images/pencelSheet.png');
+
   /// File path: assets/images/programming.png
   AssetGenImage get programming =>
       const AssetGenImage('assets/images/programming.png');
@@ -77,9 +85,20 @@ class $AssetsImagesGen {
   /// File path: assets/images/w3c (1).svg
   SvgGenImage get w3c1 => const SvgGenImage('assets/images/w3c (1).svg');
 
+  /// File path: assets/images/w3c (2).svg
+  SvgGenImage get w3c2 => const SvgGenImage('assets/images/w3c (2).svg');
+
   /// List of all assets
-  List<dynamic> get values =>
-      [a1077804, profileAvator, logoTech, programming, w3c1];
+  List<dynamic> get values => [
+        a1077804,
+        profileAvator,
+        logoTech,
+        microphoneSheet,
+        pencelSheet,
+        programming,
+        w3c1,
+        w3c2
+      ];
 }
 
 class $AssetsImagesIconsGen {

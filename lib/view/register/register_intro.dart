@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_66666/controller/register_controller.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
-import 'package:flutter_application_66666/view/home_screen.dart';
-import 'package:flutter_application_66666/view/main_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:validators/validators.dart';
@@ -11,7 +9,9 @@ import 'package:validators/validators.dart';
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
 
-  RegisterController registerController = Get.put(RegisterController());
+  // RegisterController registerController = Get.put(RegisterController());
+
+  var registerScreenBinding = Get.find<RegisterController>();
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,8 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(55, 30, 55, 40),
                     child: TextField(
-                      controller: registerController.emailTextEditingController,
+                      controller:
+                          registerScreenBinding.emailTextEditingController,
                       style: textThemeCustom.headlineMedium,
                       onChanged: (value) {
                         print("${value}is Email : ${isEmail(value)}");
@@ -101,7 +102,7 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      registerController.registerCustom();
+                      registerScreenBinding.registerCustom();
                       Navigator.pop(context);
                       _activeCodeButtonSheet(
                           context, sizeCustom, textThemeCustom);
@@ -152,7 +153,7 @@ class RegisterIntro extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(55, 30, 55, 40),
                     child: TextField(
                       controller:
-                          registerController.activeCodeEditingController,
+                          registerScreenBinding.activeCodeEditingController,
                       style: textThemeCustom.headlineMedium,
                       onChanged: (value) {
                         print("${value}is Email : ${isEmail(value)}");
@@ -166,11 +167,7 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (registerController.verifyCustom()) {
-                        Get.to(MainScreen());
-                      } else {
-                        print('can not root page');
-                      }
+                      registerScreenBinding.verifyCustom();
                     },
                     child: const Text(
                       'ادامه',

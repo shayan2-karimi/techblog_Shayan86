@@ -6,4 +6,6 @@ class MyapiConstant {
   static const myArticleItem =
       '${baseUrl}article/get.php?command=new&user_id=1';
   static const myPostRegister = '${baseUrl}register/action.php';
+  static const myManageArticle =
+      '${baseUrl}article/get.php?command=published_by_me&user_id=';
 }

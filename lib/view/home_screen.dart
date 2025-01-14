@@ -6,7 +6,7 @@ import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/models/fake_data.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
-import 'package:flutter_application_66666/view/article_list.dart';
+import 'package:flutter_application_66666/view/article/article_list.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +62,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               )
-            : const loading();
+            : SizedBox(
+                height: Get.height,
+                child: const loading(),
+              );
       }),
     );
   }

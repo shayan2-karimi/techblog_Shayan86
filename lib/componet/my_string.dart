@@ -18,6 +18,9 @@ class MyString {
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
+  static const String manageArticleText =
+      """هنوز هیچ مقاله ای به جامعه گیک های فارسی 
+اضافه نکردی !!!""";
   static const String textSvgCategory = """تبریک میگم ، ایمیل با موفقیت تایید شد
 لطفا اطلاعات ثبت نام رو کامل کن""";
 }

@@ -5,18 +5,17 @@ import 'package:flutter_application_66666/componet/my_string.dart';
 import 'package:flutter_application_66666/controller/home_screen_controller.dart';
 import 'package:flutter_application_66666/controller/single_article_controller.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
-import 'package:flutter_application_66666/view/article_list.dart';
+import 'package:flutter_application_66666/view/article/article_list.dart';
 import 'package:flutter_application_66666/view/home_screen.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
-class Single extends StatelessWidget {
-  SingleArticleController singleArticleController =
-      Get.put(SingleArticleController());
+class SingleArticle extends StatelessWidget {
+  var singleArticleController = Get.find<SingleArticleController>();
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
-  Single({super.key});
+  SingleArticle({super.key});
   @override
   Widget build(BuildContext context) {
     var sizeCustom = MediaQuery.of(context).size;

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
+import 'package:flutter_application_66666/view/article/manage_article.dart';
+import 'package:flutter_application_66666/view/main_screen.dart';
+import '../../../binding.dart';
 import 'package:flutter_application_66666/view/my_splashScreen.dart';
+import 'package:flutter_application_66666/view/article/singleArticle.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -26,6 +30,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var textThemeCustom = Theme.of(context).textTheme;
     return GetMaterialApp(
+      getPages: [
+        GetPage(
+          name: StrongConst.mainScreenRoute,
+          page: () => MainScreen(),
+          binding: RegisterBinding(),
+        ),
+        GetPage(
+          name: StrongConst.singleScreenRoute,
+          page: () => SingleArticle(),
+          binding: ArticleBinding(),
+        ),
+        GetPage(
+          name: StrongConst.manageArticleRoute,
+          page: () => ManageArticle(),
+          binding: ManageArticleBinding(),
+        ),
+      ],
       locale: const Locale('fa'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -117,4 +138,10 @@ class MyApp extends StatelessWidget {
       home: const MySplashscreen(),
     );
   }
+}
+
+class StrongConst {
+  static String mainScreenRoute = '/mainScreen';
+  static String singleScreenRoute = '/articleScreen';
+  static String manageArticleRoute = '/ManageArticle';
 }

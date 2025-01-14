@@ -3,7 +3,7 @@ import 'package:flutter_application_66666/models/article_info.dart';
 import 'package:flutter_application_66666/models/tags_model.dart';
 import 'package:flutter_application_66666/models/visited_model.dart';
 import 'package:flutter_application_66666/services/dio_servic.dart';
-import 'package:flutter_application_66666/view/single.dart';
+import 'package:flutter_application_66666/view/article/singleArticle.dart';
 import 'package:get/get.dart';
 
 class SingleArticleController extends GetxController {
@@ -48,6 +48,6 @@ class SingleArticleController extends GetxController {
       relatedList.add(TopVisited.fromJson(element));
     });
 
-    Get.to(Single());
+    Get.to(SingleArticle());
   }
 }

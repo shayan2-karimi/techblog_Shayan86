@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_66666/componet/my_url_github.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
+import 'package:flutter_application_66666/controller/register_controller.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/view/home_screen.dart';
+
 import 'package:flutter_application_66666/view/profile_screen.dart';
 import 'package:flutter_application_66666/view/register/register_intro.dart';
 import 'package:get/get.dart';
@@ -198,7 +200,7 @@ class BottomNavigation extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    changeScreenPage(2);
+                    Get.find<RegisterController>().isLogin();
                   },
                   icon: ImageIcon(
                     Assets.images.icons.w.provider(),
