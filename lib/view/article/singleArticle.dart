@@ -29,7 +29,7 @@ class SingleArticle extends StatelessWidget {
           () => singleArticleController.articleInfoModel.value.title == null
               ? SizedBox(
                   height: Get.height,
-                  child: const loading(),
+                  child: const Loading(),
                 )
               : Column(
                   children: [
@@ -39,7 +39,7 @@ class SingleArticle extends StatelessWidget {
                           imageUrl: singleArticleController
                               .articleInfoModel.value.image!,
                           placeholder: (context, url) {
-                            return const loading();
+                            return const Loading();
                           },
                           errorWidget: (context, url, error) {
                             return Image.asset("assets/images/1077804.png");
@@ -61,29 +61,34 @@ class SingleArticle extends StatelessWidget {
                                 end: Alignment.bottomCenter,
                               ),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
-                                Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                Expanded(child: SizedBox()),
-                                Icon(
+                                const Expanded(child: SizedBox()),
+                                const Icon(
                                   Icons.bookmark_border_outlined,
                                   color: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.share_outlined,
                                   color: Colors.white,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                               ],
@@ -134,48 +139,10 @@ class SingleArticle extends StatelessWidget {
                         singleArticleController.articleInfoModel.value.content!,
                         enableCaching: true,
                         onLoadingBuilder: (context, element, loadingProgress) =>
-                            const loading(),
+                            const Loading(),
                       ),
                     ),
-                    //                                   لیست تگ ها
-                    SizedBox(
-                      height: 60,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: singleArticleController.tagsModel.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () async {
-                              var tagsId =
-                                  singleArticleController.tagsModel[index].id!;
-                              await singleArticleController.getArticle(tagsId);
-
-                              Get.to(ArticleListScreen());
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(22),
-                                  color: Colors.grey,
-                                ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(13),
-                                    child: Text(
-                                      singleArticleController
-                                          .tagsModel[index].title!,
-                                      style: textThemeCustom.displayLarge,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                    tagList(textThemeCustom),
                     SeeMore(
                         marginCustom: marginCustom,
                         textThemeCustom: textThemeCustom),
@@ -207,7 +174,7 @@ class SingleArticle extends StatelessWidget {
                                           width: sizeCustom.width / 2.1,
                                           child: CachedNetworkImage(
                                               placeholder: (context, url) {
-                                                return const loading();
+                                                return const Loading();
                                               },
                                               errorWidget:
                                                   (context, url, error) {
@@ -325,6 +292,45 @@ class SingleArticle extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  SizedBox tagList(TextTheme textThemeCustom) {
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: singleArticleController.tagsModel.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () async {
+              var tagsId = singleArticleController.tagsModel[index].id!;
+              await singleArticleController.getArticle(tagsId);
+
+              Get.to(ArticleListScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  color: Colors.grey,
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(13),
+                    child: Text(
+                      singleArticleController.tagsModel[index].title!,
+                      style: textThemeCustom.displayLarge,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 

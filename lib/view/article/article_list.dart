@@ -49,7 +49,7 @@ class ArticleListScreen extends StatelessWidget {
                                   imageUrl: articleListController
                                       .articleList[index].image!,
                                   placeholder: (context, url) {
-                                    return const loading();
+                                    return const Loading();
                                   },
                                   errorWidget: (context, url, error) {
                                     return const Icon(
@@ -123,7 +123,7 @@ class ArticleListScreen extends StatelessWidget {
                     },
                   ),
                 )
-              : const loading(),
+              : const Loading(),
         ),
       ),
     );

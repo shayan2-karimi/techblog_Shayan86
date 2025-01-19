@@ -14,6 +14,6 @@ class PosterModel {
   PosterModel.fromJson(Map<String, dynamic> elementPoster) {
     id = elementPoster["id"];
     title = elementPoster["title"];
-    image = MyapiConstant.baseUrlImage + elementPoster["image"];
+    image = MyapiUrlConstant.baseUrlImage + elementPoster["image"];
   }
 }

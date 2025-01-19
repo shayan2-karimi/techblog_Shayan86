@@ -2,6 +2,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as mydio_service;
+import 'package:flutter_application_66666/componet/storage_cont.dart';
+import 'package:get_storage/get_storage.dart';
 
 class DioServic {
   Dio dio = Dio();
@@ -25,7 +27,10 @@ class DioServic {
 
   Future<dynamic> postMethod(Map<String, dynamic> map, String urlPost) async {
     dio.options.headers['content-type'] = 'application/json';
-    // TODO برای دریافت توکن هست
+    var tokenC = GetStorage().read(StorageCont.token);
+    if (tokenC != null) {
+      dio.options.headers['authoration'] = '$tokenC';
+    }
     return await dio
         .post(urlPost,
             data: mydio_service.FormData.fromMap(map),

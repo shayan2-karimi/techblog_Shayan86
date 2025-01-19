@@ -23,7 +23,7 @@ class TopPodcasts {
   TopPodcasts.fromJson(Map<String, dynamic> elemebtPod) {
     id = elemebtPod["id"];
     title = elemebtPod["title"];
-    poster = MyapiConstant.baseUrlImage + elemebtPod["poster"];
+    poster = MyapiUrlConstant.baseUrlImage + elemebtPod["poster"];
     catName = elemebtPod["cat_name"];
     author = elemebtPod["author"];
     view = elemebtPod["view"];

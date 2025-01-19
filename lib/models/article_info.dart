@@ -14,17 +14,9 @@ class ArticleInfo {
   bool? isFavorite;
 
   ArticleInfo({
-    this.id,
     this.title,
     this.content,
     this.image,
-    this.catId,
-    this.catName,
-    this.author,
-    this.view,
-    this.status,
-    this.createdAt,
-    this.isFavorite,
   });
 
   ArticleInfo.fromJson(Map<String, dynamic> elementInfo) {
@@ -33,7 +25,7 @@ class ArticleInfo {
     title = info['title'] ?? '';
     content = info['content'] ?? '';
     image =
-        info['image'] != null ? MyapiConstant.hostDiUrl + info['image'] : '';
+        info['image'] != null ? MyapiUrlConstant.hostDiUrl + info['image'] : '';
     catId = info['cat_id'] ?? '';
     catName = info['cat_name'] ?? '';
     author = info['author'] ?? '';

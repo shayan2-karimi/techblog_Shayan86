@@ -9,9 +9,9 @@ import 'package:validators/validators.dart';
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
 
-  // RegisterController registerController = Get.put(RegisterController());
+  RegisterController registerScreenBinding = Get.put(RegisterController());
 
-  var registerScreenBinding = Get.find<RegisterController>();
+  // var registerScreenBinding = Get.find<RegisterController>();
 
   @override
   Widget build(BuildContext context) {

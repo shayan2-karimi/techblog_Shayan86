@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
+import 'package:flutter_application_66666/gen/assets.gen.dart';
+import 'package:flutter_application_66666/view/article/article_list.dart';
 import 'package:get/get.dart';
 
 TextStyle appBarThemeText = const TextStyle(
@@ -20,7 +22,7 @@ PreferredSize appBarMe(String title) {
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
               child: Text(
-                'مقالات جدید',
+                title,
                 style: appBarThemeText,
               ),
             ),
@@ -50,4 +52,77 @@ PreferredSize appBarMe(String title) {
       ),
     ),
   );
+}
+
+class HomePageSeeMoreBlog extends StatelessWidget {
+  const HomePageSeeMoreBlog({
+    super.key,
+    required this.marginCustom,
+    required this.textThemeCustom,
+    required this.title,
+  });
+
+  final double marginCustom;
+  final TextTheme textThemeCustom;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Get.to(ArticleListScreen()),
+      child: Padding(
+        padding: EdgeInsets.only(right: marginCustom, bottom: 20),
+        child: Row(
+          children: [
+            ImageIcon(
+              Assets.images.icons.pencel.provider(),
+              color: MyColors.colorTitle,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              title,
+              style: textThemeCustom.displaySmall,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TitleChanges extends StatelessWidget {
+  const TitleChanges({
+    super.key,
+    required this.marginCustom,
+    required this.textThemeCustom,
+    required this.title,
+  });
+
+  final double marginCustom;
+  final TextTheme textThemeCustom;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: marginCustom, bottom: 20),
+      child: Row(
+        children: [
+          ImageIcon(
+            Assets.images.icons.pencel.provider(),
+            color: MyColors.colorTitle,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: textThemeCustom.displaySmall,
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -24,103 +24,123 @@ class ManageArticle extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: appBarMe('مدیریت مقاله ها'),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.fromLTRB(25, 0, 25, 20),
+          child: ElevatedButton(
+            onPressed: () {
+              Get.toNamed(StrongConst.singleManageArticleRoute);
+            },
+            child: const Text(
+              'بریم برای نوشتن یه مقاله باحال',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
         body: Obx(
-          () => manageArticleState.manageArticle.isNotEmpty
-              ? SizedBox(
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: manageArticleState.manageArticle.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          //TODO go to singlr manage
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                height: sizeCustom.height / 6,
-                                width: sizeCustom.width / 3,
-                                child: CachedNetworkImage(
-                                  imageUrl: manageArticleState
-                                      .manageArticle[index].image!,
-                                  placeholder: (context, url) {
-                                    return const loading();
-                                  },
-                                  errorWidget: (context, url, error) {
-                                    return const Icon(
-                                      Icons.image_not_supported_outlined,
-                                      size: 50,
-                                      color: Colors.grey,
-                                    );
-                                  },
-                                  imageBuilder: (context, imageProvider) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(17)),
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: sizeCustom.width / 2,
-                                      child: Text(
-                                        manageArticleState
-                                            .manageArticle[index].title!,
-                                        style: textThemeCustom.displayMedium,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      ),
+          () => manageArticleState.lodingM.value
+              ? const Loading()
+              : manageArticleState.manageArticle.isNotEmpty
+                  ? SizedBox(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: manageArticleState.manageArticle.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              //TODO go to singlr manage
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    height: sizeCustom.height / 6,
+                                    width: sizeCustom.width / 3,
+                                    child: CachedNetworkImage(
+                                      imageUrl: manageArticleState
+                                          .manageArticle[index].image!,
+                                      placeholder: (context, url) {
+                                        return const Loading();
+                                      },
+                                      errorWidget: (context, url, error) {
+                                        return const Icon(
+                                          Icons.image_not_supported_outlined,
+                                          size: 50,
+                                          color: Colors.grey,
+                                        );
+                                      },
+                                      imageBuilder: (context, imageProvider) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(17)),
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                    const SizedBox(
-                                      height: 18,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       children: [
-                                        Text(
-                                          manageArticleState
-                                              .manageArticle[index].author!,
-                                          style: textThemeCustom.displayLarge,
+                                        SizedBox(
+                                          width: sizeCustom.width / 2,
+                                          child: Text(
+                                            manageArticleState
+                                                .manageArticle[index].title!,
+                                            style:
+                                                textThemeCustom.displayMedium,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                          ),
                                         ),
-                                        Text(
-                                          '${manageArticleState.manageArticle[index].view!}بازدید',
-                                          style: textThemeCustom.headlineMedium!
-                                              .copyWith(fontSize: 13),
+                                        const SizedBox(
+                                          height: 18,
                                         ),
-                                        const Expanded(child: SizedBox()),
-                                        Text(
-                                          manageArticleState
-                                              .manageArticle[index].catName!,
-                                          style: textThemeCustom.displayLarge,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              manageArticleState
+                                                  .manageArticle[index].author!,
+                                              style:
+                                                  textThemeCustom.displayLarge,
+                                            ),
+                                            Text(
+                                              '${manageArticleState.manageArticle[index].view!}بازدید',
+                                              style: textThemeCustom
+                                                  .headlineMedium!
+                                                  .copyWith(fontSize: 13),
+                                            ),
+                                            const Expanded(child: SizedBox()),
+                                            Text(
+                                              manageArticleState
+                                                  .manageArticle[index]
+                                                  .catName!,
+                                              style:
+                                                  textThemeCustom.displayLarge,
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                )
-              : articleEmptyState(textThemeCustom),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : articleEmptyState(textThemeCustom),
         ),
       ),
     );
@@ -145,16 +165,6 @@ class ManageArticle extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'بریم برای نوشتن یه مقاله باحال',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          )
         ],
       ),
     );

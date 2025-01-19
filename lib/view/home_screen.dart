@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_66666/componet/my_componet.dart';
 import 'package:flutter_application_66666/controller/home_screen_controller.dart';
 import 'package:flutter_application_66666/controller/single_article_controller.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/models/fake_data.dart';
 import 'package:flutter_application_66666/componet/my_colors.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
-import 'package:flutter_application_66666/view/article/article_list.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
@@ -46,9 +46,11 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  _HomePageSeeMoreBlog(
-                      marginCustom: marginCustom,
-                      textThemeCustom: textThemeCustom),
+                  HomePageSeeMoreBlog(
+                    marginCustom: marginCustom,
+                    textThemeCustom: textThemeCustom,
+                    title: 'مشاهده داغ ترین نوشته ها',
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -64,7 +66,7 @@ class HomeScreen extends StatelessWidget {
               )
             : SizedBox(
                 height: Get.height,
-                child: const loading(),
+                child: const Loading(),
               );
       }),
     );
@@ -89,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: homeScreenController.poster.value.image!,
                 placeholder: (context, url) {
-                  return const loading();
+                  return const Loading();
                 },
                 imageBuilder: (context, imageProvider) {
                   return Container(
@@ -160,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                           width: sizeCustom.width / 2.1,
                           child: CachedNetworkImage(
                               placeholder: (context, url) {
-                                return const loading();
+                                return const Loading();
                               },
                               errorWidget: (context, url, error) {
                                 return const Icon(
@@ -326,8 +328,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class loading extends StatelessWidget {
-  const loading({
+class Loading extends StatelessWidget {
+  const Loading({
     super.key,
   });
 
@@ -367,41 +369,6 @@ class _HomePageSeeMorePodcast extends StatelessWidget {
             style: textThemeCustom.displaySmall,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _HomePageSeeMoreBlog extends StatelessWidget {
-  const _HomePageSeeMoreBlog({
-    required this.marginCustom,
-    required this.textThemeCustom,
-  });
-
-  final double marginCustom;
-  final TextTheme textThemeCustom;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to(ArticleListScreen()),
-      child: Padding(
-        padding: EdgeInsets.only(right: marginCustom, bottom: 20),
-        child: Row(
-          children: [
-            ImageIcon(
-              Assets.images.icons.pencel.provider(),
-              color: MyColors.colorTitle,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              MyString.viewHotesBlog,
-              style: textThemeCustom.displaySmall,
-            ),
-          ],
-        ),
       ),
     );
   }

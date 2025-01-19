@@ -17,7 +17,7 @@ class ArticleListController extends GetxController {
 
   getArticleList() async {
     loadingArticle.value = true;
-    var response = await DioServic().getMethod(MyapiConstant.myArticleItem);
+    var response = await DioServic().getMethod(MyapiUrlConstant.myArticleItem);
 
     if (response.statusCode == 200) {
       response.data.forEach((elementList) {
@@ -31,7 +31,7 @@ class ArticleListController extends GetxController {
     articleList.clear();
     loadingArticle.value = true;
     var response = await DioServic().getMethod(
-        '${MyapiConstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');
+        '${MyapiUrlConstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=');
 
     if (response.statusCode == 200) {
       response.data.forEach((elementList) {

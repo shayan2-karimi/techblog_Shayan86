@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_66666/componet/myapi_constant.dart';
 import 'package:flutter_application_66666/componet/storage_cont.dart';
 import 'package:flutter_application_66666/gen/assets.gen.dart';
 import 'package:flutter_application_66666/main.dart';
 import 'package:flutter_application_66666/services/dio_servic.dart';
-import 'package:flutter_application_66666/view/article/manage_article.dart';
 import 'package:flutter_application_66666/view/main_screen.dart';
 import 'package:flutter_application_66666/view/register/register_intro.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,7 +25,7 @@ class RegisterController extends GetxController {
       'command': 'register',
     };
     var responseReg =
-        await DioServic().postMethod(mapReg, MyapiConstant.myPostRegister);
+        await DioServic().postMethod(mapReg, MyapiUrlConstant.myPostRegister);
 
     email = emailTextEditingController.text;
     userId = responseReg.data['user_id'];
@@ -44,7 +42,7 @@ class RegisterController extends GetxController {
     };
     print(mapReg);
     var responseReg =
-        await DioServic().postMethod(mapReg, MyapiConstant.myPostRegister);
+        await DioServic().postMethod(mapReg, MyapiUrlConstant.myPostRegister);
     print(responseReg.data);
 
 // {response: verified, user_id: 553, token: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTUzLCJlbWFpbCI6InNoYXlhbmthcmltaWlpODY4NkBnbWFpbC5jb20ifQ.9oawwXo0vYOll2dbipQUhjAOIGPAHros6mu2Ft31TxM}

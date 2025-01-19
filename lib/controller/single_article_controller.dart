@@ -12,19 +12,7 @@ class SingleArticleController extends GetxController {
   RxList<TagsModel> tagsModel = RxList();
   RxList<TopVisited> relatedList = RxList();
 
-  Rx<ArticleInfo> articleInfoModel = ArticleInfo(
-    id: '',
-    title: '',
-    content: '',
-    image: '',
-    catId: '',
-    catName: '',
-    author: '',
-    view: '',
-    status: '',
-    createdAt: '',
-    isFavorite: false,
-  ).obs;
+  Rx<ArticleInfo> articleInfoModel = ArticleInfo().obs;
 
   getArticle(var id) async {
     articleInfoModel = ArticleInfo().obs;
@@ -32,7 +20,7 @@ class SingleArticleController extends GetxController {
     var userId = '';
 
     var response = await DioServic().getMethod(
-        '${MyapiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=1$userId');
+        '${MyapiUrlConstant.baseUrl}article/get.php?command=info&id=$id&user_id=1$userId');
 
     if (response.statusCode == 200) {
       articleInfoModel.value = ArticleInfo.fromJson(response.data);

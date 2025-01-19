@@ -28,7 +28,7 @@ class TopVisited {
   TopVisited.fromJson(Map<String, dynamic> elementVisit) {
     id = elementVisit["id"];
     title = elementVisit["title"];
-    image = MyapiConstant.baseUrlImage + elementVisit["image"];
+    image = MyapiUrlConstant.baseUrlImage + elementVisit["image"];
     catId = elementVisit["cat_id"];
     catName = elementVisit["cat_name"];
     author = elementVisit["author"];

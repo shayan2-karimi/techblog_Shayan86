@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_66666/componet/dimens.dart';
 import 'package:flutter_application_66666/componet/my_url_github.dart';
 import 'package:flutter_application_66666/componet/my_string.dart';
 import 'package:flutter_application_66666/controller/register_controller.dart';
@@ -11,7 +12,7 @@ import 'package:flutter_application_66666/view/register/register_intro.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-final GlobalKey<ScaffoldState> _keyCustom = GlobalKey();
+// final GlobalKey<ScaffoldState> _keyCustom = GlobalKey();
 
 class MainScreen extends StatelessWidget {
   RxInt selectedTapIndex = 0.obs;
@@ -20,15 +21,13 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // DioServic().getMethod(MyapiConstant.myHomeItem);
     var sizeCustom = MediaQuery.of(context).size;
     var textThemeCustom = Theme.of(context).textTheme;
-    double marginCustom = sizeCustom.width / 10;
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.scafoldBG,
-        key: _keyCustom,
+        // key: _keyCustom,
         drawer: Drawer(
           clipBehavior: Clip.none,
           child: Container(
@@ -36,7 +35,8 @@ class MainScreen extends StatelessWidget {
               color: MyColors.scafoldBG, // تنظیم رنگ پس‌زمینه
             ),
             child: Padding(
-              padding: EdgeInsets.only(left: marginCustom, right: marginCustom),
+              padding: EdgeInsets.only(
+                  left: Dimens.marginCustom, right: Dimens.marginCustom),
               child: ListView(
                 children: [
                   DrawerHeader(
@@ -98,11 +98,11 @@ class MainScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                InkWell(
-                    onTap: () {
-                      _keyCustom.currentState!.openDrawer();
-                    },
-                    child: const Icon(Icons.menu)),
+                // InkWell(
+                //     onTap: () {
+                //       _keyCustom.currentState!.openDrawer();
+                //     },
+                //     child: const Icon(Icons.menu)),
                 Image(
                   image: Assets.images.logoTech.provider(),
                   height: sizeCustom.height / 13.6,
@@ -123,12 +123,12 @@ class MainScreen extends StatelessWidget {
                       HomeScreen(
                         sizeCustom: sizeCustom,
                         textThemeCustom: textThemeCustom,
-                        marginCustom: marginCustom,
+                        marginCustom: Dimens.marginCustom,
                       ),
                       ProfileScreen(
                           sizeCustom: sizeCustom,
                           textThemeCustom: textThemeCustom,
-                          marginCustom: marginCustom),
+                          marginCustom: Dimens.marginCustom),
                       RegisterIntro()
                     ],
                   );
@@ -137,7 +137,7 @@ class MainScreen extends StatelessWidget {
             ),
             BottomNavigation(
               sizeCustom: sizeCustom,
-              marginCustom: marginCustom,
+              marginCustom: Dimens.marginCustom,
               changeScreenPage: (int value) {
                 selectedTapIndex.value = value;
               },
